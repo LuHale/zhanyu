@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>俱乐部选择</title>
+</head>
+
+<body>
+<h1>请选择要加入的俱乐部</h1>
+
+<table id="tt" border="2">
+<td>俱乐部名称</td> <td>俱乐部管理员</td> 	<td>操作</td>	</tr>
+
+{%  for d,k in groupinfo.items %}
+<tr {% if forloop.counter|divisibleby:"2"  %} style="background: gainsboro" {% else %} style="background: aquamarine"  {% endif %}  >  
+<td>{{ d }}</td> <td>{{ k }}</td>
+<td><a href="/online/joinin/?group={{d}}">加入</a>  <a href="/online/adduser/?group={{d}}">查看</a>  </tr>
+{% endfor %}
+
+</table>
+
+<br>
+<a href="/online/logout/">退出</a>
+<div class="footer">
+	<p class="footer-text">
+	<span>逯浩</span>
+	<span>版权所有.版本：2.0.0</span>
+</p>
+</div>
+</body>
+</html>

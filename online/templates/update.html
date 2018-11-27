@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>添加数据，提交form表单</title>
+</head>
+
+<style> 
+body{text-align:center} 
+</style> 
+
+<body>
+
+<form method="POST">{% csrf_token %}
+  <input name="id" type="hidden" value="" ><br/>
+请输入俱乐部<input name="clubname" type="text" size="20" maxlength="8" value={{groupname}}><br/>
+请输入名字<input name="sname" type="text" size="20" maxlength="8" value={{unm}}><br/>
+请输入日期<input name="sdate" type="text" value={{datetime}}><br/>
+请输入次数<input name="susetimes" type="text" size="10" maxlength="2"><br/>
+请输入剩余次数<input name="stimes" type="text" size="10" maxlength="2"><br/>
+  <input type="submit" value="提交" >
+</form>
+
+<div class="footer">
+	<p class="footer-text">
+	<span>逯浩</span>
+	<span>版权所有.版本：2.0.0</span>
+</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+</head>
+
+<body>
+<h1>welcome {{username}} !</h1>
+
+<h3>你可以</h3><a href="/online/creatgroups/">创建俱乐部</a><h3>或者</h3><a href="/online/joingroups/">加入俱乐部</a>
+<br>
+{%	if ifgroupcreater	%}
+	<h3>您管理的俱乐部有</h3>
+	{%	load myappdict	%}
+	{%  for d in userinfo.keys %}
+
+
+		<table id="tt" border="2">
+		<tr> <td>日期</td>  <td>用户姓名</td> <td>使用次数</td>   <td>剩余次数</td>	<td>操作</td>	</tr>
+		<h3>{{d}}</h3>
+			{%  for j in userinfo|key:d %}
+		<tr {% if forloop.counter|divisibleby:"2"  %} style="background: gainsboro" {% else %} style="background: aquamarine"  {% endif %}  >  
+		<td>{{ j.userdate }}</td> <td>{{ j.user }}</td> <td>{{ j.usetimes }}</td><td>{{ j.times }}</td>
+		<td><a href="/online/delete/?id={{ j.id }}&groupname={{d}}">删除</a>  <a href="/online/update/?user={{ j.user }}&groupname={{d}}">添加</a>  <a href="/online/show/?user={{ j.user }}&groupname={{d}}">查看</a>  </tr>
+			{% endfor %}
+	<a href="/online/adduser/?group={{d}}">添加会员记录</a>
+	{% endfor %}
+{%	endif	%}
+{%	if usergrouplist	%}
+	<h3>您加入的俱乐部有</h3>
+	{%	load myappdict	%}
+	{%  for d in usergrouplist.keys %}
+
+
+		<table id="tt" border="2">
+		<tr> <td>日期</td>  <td>用户姓名</td> <td>使用次数</td>   <td>剩余次数</td>	</tr>
+		<h3>{{d}}</h3>
+			{%  for j in usergrouplist|key:d %}
+		<tr {% if forloop.counter|divisibleby:"2"  %} style="background: gainsboro" {% else %} style="background: aquamarine"  {% endif %}  >  
+		<td>{{ j.userdate }}</td> <td>{{ j.user }}</td> <td>{{ j.usetimes }}</td><td>{{ j.times }}</td>
+		
+			{% endfor %}
+	{% endfor %}
+{%	endif	%}
+	
+		</table>
+
+</br>
+<a href="/online/logout/">退出</a>
+<div class="footer">
+	<p class="footer-text">
+	<span>逯浩</span>
+	<span>版权所有.版本：2.0.0</span>
+</p>
+</div>
+</body>
+</html>
